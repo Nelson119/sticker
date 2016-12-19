@@ -1,93 +1,191 @@
-// Glyphicons font path
-$icon-font-path:        "../fonts/";
-
-// Grid settings
-$main-sm-columns:       12;
-$sidebar-sm-columns:    4;
-
-// Colors
-$brand-primary:         #27ae60;
-
-@font-face { 
-	font-family: 'msjh-arial'; 
-	src:  local("Lantinghei")
-		, local('Noto Sans TC')
-		, local('微軟正黑體')
-		, local("STHeiti")
-		, local("メイリオ")
-		, local("Meiryo")
-		, local("ヒラギノ角ゴ Pro w3")
-		, local("Hiragino Kaku Gothic Pro")
-		, local("Osaka")
-		, local("STXihei")
-		, local("HEITI TC")
-		, local("黑體-繁")
-		, local("黑體");
-}
-@font-face {
-	font-family: 'msjh-arial';
-	src: local('Arial')
-		, local("Segoe UI")
-		, local("Verdana")
-		, local("ＭＳ Ｐゴシック")
-		, local("MS P Gothic")
-		, local("Helvetica Neue")
-		, local("Helvetica")
-		, local("sans-serif");
-	font-weight: normal;
-	font-style: normal;
-	unicode-range: U+00-024F;
-}
-
-$main-font: 'Noto Sans TC';
-$main-font-fallback:'Arial', 'Verdana', 'Lantinghei','Noto Sans TC', 'microsoft jhenghei', '微軟正黑體', 'Segoe UI';
-$base-font-size: 13px;
-$base-font-size-num: 13;
-$base-font-size-sm: 10px;
-
-.font-default{
-	font-family: $main-font, $main-font-fallback, cursive;
-}
-.fontsize-reset {
-	font-size: $base-font-size;
-}
-
-$browser-xs-viewport: 320; // Default
-$browser-sm-viewport: 768; // Default
-$browser-lg-viewport: 1366; // Default
-
-@function vwsm($pixels, $context: $browser-sm-viewport) {
+@function vwsm($pixels, $context: $screen-sm-num) {
   @return #{$pixels/$context*100}vw;
 }
 
-@function vwxs($pixels, $context: $browser-xs-viewport) {
+@function vwxs($pixels, $context: $screen-xs-num) {
   @return #{$pixels/$context*100}vw;
 }
 
-@function vwlg($pixels, $context: $browser-lg-viewport) {
+@function vwlg($pixels, $context: $screen-lg-num) {
   @return #{$pixels/$context*100}vw;
 }
 
-@mixin linear-gradient($direction, $color-stops) {
-  background: nth(nth($color-stops, 1), 1);
-  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
-  background: linear-gradient($direction, $color-stops);
+@mixin keyframes($animationName)
+{
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName}  {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+
+@function per($pixels, $context: $browser-xs-viewport){
+  @return percentage($pixels/$context);
+}
+@function em($pixels, $context: $font-size-base-num){
+  @return #{$pixels/$context}em;
 }
 
 @for $i from 6 to 150 {
 	.fontsize-#{$i} {
-		font-size: percentage($i/$base-font-size-num);
+		@media screen and (min-width: #{$screen-xs}) {
+			font-size: #{$i}px;
+			font-size: percentage($i/$font-size-base-num);
+		}
+	}
+	.fontsize-sm-#{$i} {
+		@media screen and (max-width: #{$screen-xs - 1}) {
+			font-size: #{$i}px;
+			font-size: percentage($i/$font-size-base-num);
+			font-size: vwsm($i);
+		}
 	}
 }
 
-@for $i from 6 to 150 {
-	.fontsize-sm-#{$i} {
-		@media screen and (max-width: 768px) {
-			font-size: vwsm($i);
+@mixin SubItem() {
+	position: absolute;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100%;	
+}
+
+@mixin SubImgW() {
+	position: absolute;
+	top:0;
+	left:0;
+	width: 100%;
+	height: auto;	
+}
+
+@mixin SubImgH() {
+	position: absolute;
+	top:0;
+	left:0;
+	width: auto;
+	height: 100%;	
+}
+
+@mixin Item($width, $height, $top: 'auto', $right: 'auto', $bottom: 'auto', $left: 'auto', $viewport: $browser-xs-viewport, $fit: 'none', $pos: 'absolute') {
+
+	@if($fit == 'fit'){
+		$width: per($width, $viewport);
+		$height: per($height, $viewport);
+		@if($top != 'auto') {
+			$top: per($top, $viewport);
 		}
+		@if($left != 'auto') {
+			$left: per($left, $viewport);
+		}
+		@if($right != 'auto') {
+			$right: per($right, $viewport);
+		}
+		@if($bottom != 'auto') {
+			$bottom: per($bottom, $viewport);
+		}
+	}@else{
+		$width: #{$width}px;
+		$height: #{$height}px;
+		@if($top != 'auto') {
+			$top: #{$top}px;
+		}
+		@if($left != 'auto') {
+			$left: #{$left}px;
+		}
+		@if($right != 'auto') {
+			$right: #{$right}px;
+		}
+		@if($bottom != 'auto') {
+			$bottom: #{$bottom}px;
+		}
+	}
+
+	margin: 0;
+	width: $width;
+	height: 0;
+	position: #{$pos};
+	padding-top: $height;
+
+	@if($left == 'auto') {
+		right: 0;
+		left: auto;
+		margin-right: $right;
+		z-index: 1;
+	}@else{
+		margin-left: $left;
+		left: 0;
+		right: auto;
+		margin-right: $right;
+		z-index: 2;
+	}
+	@if($top == 'auto') {
+		bottom: 0;
+		top: auto;
+		margin-bottom: $bottom;
+	}@else{
+		top: 0;
+		bottom: 0;
+		margin-top: $top;
+		margin-bottom: $bottom;
+	}
+}
+
+.vertical-top{
+	&:before{
+		height: 100%;
+		content:'';
+		display: inline-block;
+		vertical-align: top;
+	}
+	>*{
+		display: inline-block;
+		vertical-align: top;
+	}
+}
+
+.vertical-middle{
+	&:before{
+		height: 100%;
+		content:'';
+		display: inline-block;
+		vertical-align: middle;
+	}
+	>*{
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
+.vertical-bottom{
+	&:before{
+		height: 100%;
+		content:'';
+		display: inline-block;
+		vertical-align: bottom;
+	}
+	>*{
+		display: inline-block;
+		vertical-align: bottom;
 	}
 }
 
 $font-default-color: #000;
 $font-default-hover-color: #333;
 $font-white-color: #fff;
+
+.subitem{
+	@include SubItem();
+}
+.subimg-w{
+	@include SubImgW();
+}
+.subimg-h{
+	@include SubImgH();
+}

@@ -13,23 +13,6 @@ app.partial = {};
 // 網址為 gulp 或者 github 時 設定成debug 模式
 var debug = /localhost[:]9000|nelson119.github.io/.test(location.href);
 
-var share = {
-	facebook: function(href, title){
-		href = encodeURIComponent(href || location.href + '?utm_source=facebook&utm_medium=fbshare_m&utm_campaign=roseanni');
-		title = encodeURIComponent(title || document.title);
-		window.open('https://www.facebook.com/sharer.php?u='+href+'&amp;t='+title);
-	},
-	googleplus: function(href){
-		href = encodeURIComponent(href || location.href + '?utm_source=g+&utm_medium=fbshare_m&utm_campaign=roseanni');
-		window.open('https://plus.google.com/share?url=' + href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
-	},
-	email: function(href, title){
-		href = encodeURIComponent(href || location.href + '?utm_source=email&utm_medium=fbshare_m&utm_campaign=roseanni');
-		title = encodeURIComponent(title || document.title);
-		var body = encodeURIComponent(''+href+' #' +title+'');
-		window.open('https://mail.google.com/mail/?view=cm&fs=1&to=&su=與你分享:'+title+'&body='+body+'&bcc=');
-	}
-};
 
 
 $(function(){
@@ -37,42 +20,6 @@ $(function(){
 	$.each(app.partial, function(name, init){
 		init();
     });
-
-
-
-	//觸發第一次調整頁面尺寸
-	$(window).trigger('resize');
-	//分享按鈕
-
-	$('.share .facebook').on('click', function(e){
-		share.facebook();
-
-		e.stopPropagation();
-
-		e.preventDefault();
-
-		return false;
-	});
-
-	$('.share .googleplus').on('click', function(e){
-		share.googleplus();
-
-		e.stopPropagation();
-
-		e.preventDefault();
-
-		return false;
-	});
-
-	$('.share .email').on('click', function(e){
-		share.email();
-
-		e.stopPropagation();
-
-		e.preventDefault();
-
-		return false;
-	});
 
 });
 
@@ -90,3 +37,21 @@ $.fn.hasAttr = function(attributeName){
 };
 
 
+
+var share = {
+	facebook: function(href, title){
+		href = encodeURIComponent(href || location.href + '?utm_source=facebook&utm_medium=fbshare_m&utm_campaign=camp');
+		title = encodeURIComponent(title || document.title);
+		window.open('https://www.facebook.com/sharer.php?u='+href+'&amp;t='+title);
+	},
+	googleplus: function(href){
+		href = encodeURIComponent(href || location.href + '?utm_source=g+&utm_medium=googleplus_m&utm_campaign=camp');
+		window.open('https://plus.google.com/share?url=' + href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+	},
+	email: function(href, title){
+		href = encodeURIComponent(href || location.href + '?utm_source=email&utm_medium=email_m&utm_campaign=camp');
+		title = encodeURIComponent(title || document.title);
+		var body = encodeURIComponent(''+href+' #' +title+'');
+		window.open('https://mail.google.com/mail/?view=cm&fs=1&to=&su=與你分享:'+title+'&body='+body+'&bcc=');
+	}
+};
