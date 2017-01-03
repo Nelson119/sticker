@@ -26,29 +26,46 @@ app.partial.preload = function(){
 		});
 		
 		$.each(imagePreload, function(src, stat){
-			var img = new Image();
-			img.onload = function(){
-				imagePreload[src] = true;
-				var alldone = true;
-				$.each(imagePreload, function($s, $done){
-					alldone = $done && alldone;
-				});
-				var ret = $(elements).filter(function(){
-					return src == $(this).attr('data-src');
-				}).each(function(i, ele){
-					if(ele.tagName.toLowerCase() === 'img'){
-						$(ele).attr('src', $(ele).attr('data-src'));
-					}else{
-						$(ele).css('background-image', 'url(' + $(ele).attr('data-src') + ')');
-					}
-				});				
+			if(/\.svg$/.test(src)){
 
-				if(alldone){
-					//全部圖片下載完成
-					imageLoaded();
-				}
-			};
-			img.src = src;
+				$.get(src, function(svg){
+					var ret = $(elements).filter(function(){
+						return src == $(this).attr('data-src');
+					}).each(function(i, ele){
+
+						if(ele.tagName.toLowerCase() === 'img'){
+							$('svg', svg).clone().insertAfter(ele);
+							$(ele).remove();
+						}else{
+							$(ele).html($('svg', svg).clone());
+						}
+					});	
+				});
+			}else{
+				var img = new Image();
+				img.onload = function(){
+					imagePreload[src] = true;
+					var alldone = true;
+					$.each(imagePreload, function($s, $done){
+						alldone = $done && alldone;
+					});
+					var ret = $(elements).filter(function(){
+						return src == $(this).attr('data-src');
+					}).each(function(i, ele){
+						if(ele.tagName.toLowerCase() === 'img'){
+							$(ele).attr('src', $(ele).attr('data-src'));
+						}else{
+							$(ele).css('background-image', 'url(' + $(ele).attr('data-src') + ')');
+						}
+					});				
+
+					if(alldone){
+						//全部圖片下載完成
+						imageLoaded();
+					}
+				};
+				img.src = src;
+			}
 		});
 
 		function imageLoaded(){
