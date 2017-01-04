@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="description" content="">
@@ -32,21 +32,48 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     
-    <section class="container home">
-      <header class="row">
-        <!-- <h1 class="logo"></h1> -->
-        <a href="javascript:" class="burger visible-xs visible-sm"> 
-          <i class="fa fa-bars"></i>
-        </a>
-        <!-- <nav>
-          <a href="javascript:">XXX</a>
-          <a href="javascript:">XXX</a>
-          <a href="javascript:">XXX</a>
-          <a href="javascript:">XXX</a>
-          <a href="javascript:">XXX</a>
-        </nav> -->
-      </header>
-      <section class="row">
+    <header>
+      <!-- <h1 class="logo"></h1> -->
+      <!-- <a href="javascript:" class="burger visible-xs visible-sm"> 
+        <i class="fa fa-bars"></i>
+      </a> -->
+
+      <!--英文選單-->
+      <nav class="visible-en">
+        <a href="javascript:" data-href="/">home</a>
+        <a href="javascript:" data-href="about">About Nelson Tân</a>
+        <a href="javascript:">contact</a>
+      </nav>
+      <!--./英文選單-->
+
+      <!--中文選單-->
+      <nav class="visible-zh">
+        <a href="javascript:" data-href="/">首頁</a>
+        <a href="javascript:" data-href="about">關於 Nelson Tân</a>
+        <a href="javascript:">聯絡方式</a>
+      </nav>
+      <!--./中文選單-->
+
+      <!--台文選單-->
+      <nav class="visible-tai">
+        <a href="javascript:" data-href="/">siú-ia̍h</a>
+        <a href="javascript:" data-href="about">kóng-tio̍h Nelson-Tân</a>
+        <a href="javascript:">sio-chhōe #相找</a>
+      </nav>
+      <!--./台文選單-->
+
+      <!--語言選單-->
+      <nav class="i18n">
+        <i class="fa fa-language" aria-hidden="true"></i>
+        <a href="javascript:" class="to" data-lang="tai">台</a>
+        <a href="javascript:" class="to" data-lang="en">En</a>
+        <a href="javascript:" class="to" data-lang="zh">中</a>
+      </nav>
+      <!--./語言選單-->
+    </header>
+    <section id="container" class="container">
+
+      <section id="content" class="row">
         <section class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><h1>1</h1></section>
         <section class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><h2>2</h2></section>
         <section class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><h3>3</h3></section>
@@ -54,10 +81,10 @@
         <section class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><h5>5</h5></section>
         <section class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><h6>6</h6></section>
       </section>
-      <footer>
-        <p>ALL RIGHTS RESERVED &copy;</p>
-      </footer>
     </section>
+    <footer>
+      <p>ALL RIGHTS RESERVED &copy;</p>
+    </footer>
     
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
@@ -93,6 +120,8 @@
     <!-- build:js js/main.js -->
     <script src="js/app.js"></script>
     <script src="js/preload.js"></script>
+    <script src="js/spa.js"></script>
+    <script src="js/i18n.js"></script>
     <script src="js/ga.js"></script>
     <!-- endbuild -->
   </body>

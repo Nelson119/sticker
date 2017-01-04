@@ -188,3 +188,20 @@ $font-white-color: #fff;
 .subimg-h{
 	@include SubImgH();
 }
+.visible-en, .visible-zh, .visible-tai{
+	display: none;
+}
+// html[lang="en"] .visible-en, html[lang="zh"] .visible-zh, html[lang="tai"].visible-tai{
+// 	display: block;
+// }
+html[lang="en"] .visible-en, html[lang="zh"] .visible-zh, html[lang="tai"] .visible-tai{
+	display: block;
+}
+
+// html[lang="en"] .visible-en-inline, html[lang="zh"] .visible-zh-inline, html[lang="tai"] .visible-tai-inline{
+// 	display: inline;
+// }
+
+// html[lang="en"] .visible-en-inline-block, html[lang="zh"] .visible-zh-inline-block, html[lang="tai"] .visible-tai-inline-block{
+// 	display: inline-block;
+// }

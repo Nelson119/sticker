@@ -26,34 +26,57 @@ app.partial.preload = function(){
 		});
 		
 		$.each(imagePreload, function(src, stat){
-			var img = new Image();
-			img.onload = function(){
-				imagePreload[src] = true;
-				var alldone = true;
-				$.each(imagePreload, function($s, $done){
-					alldone = $done && alldone;
-				});
-				var ret = $(elements).filter(function(){
-					return src == $(this).attr('data-src');
-				}).each(function(i, ele){
-					if(ele.tagName.toLowerCase() === 'img'){
-						$(ele).attr('src', $(ele).attr('data-src'));
-					}else{
-						$(ele).css('background-image', 'url(' + $(ele).attr('data-src') + ')');
-					}
-				});				
+			if(/\.svg$/.test(src)){
 
-				if(alldone){
-					//全部圖片下載完成
-					imageLoaded();
-				}
-			};
-			img.src = src;
+				$.get(src, function(svg){
+					var ret = $(elements).filter(function(){
+						return src == $(this).attr('data-src');
+					}).each(function(i, ele){
+
+						if(ele.tagName.toLowerCase() === 'img'){
+							$('svg', svg).clone().insertAfter(ele);
+							$(ele).remove();
+						}else{
+							$(ele).removeAttr('data-src').html($('svg', svg).clone());
+						}
+					});	
+					checkAll(src);
+				});
+			}else{
+				var img = new Image();
+				img.onload = function(){
+					var ret = $(elements).filter(function(){
+						return src == $(this).attr('data-src');
+					}).each(function(i, ele){
+						if(ele.tagName.toLowerCase() === 'img'){
+							$(ele).attr('src', $(ele).attr('data-src'));
+						}else{
+							$(ele).css('background-image', 'url(' + $(ele).attr('data-src') + ')');
+						}
+					});			
+					checkAll(src);	
+
+				};
+				img.src = src;
+			}
 		});
 
+		function checkAll(src){
+
+			imagePreload[src] = true;
+			var alldone = true;
+			$.each(imagePreload, function($s, $done){
+				alldone = $done && alldone;
+			});
+			if(alldone){
+				//全部圖片下載完成
+				imageLoaded();
+			}
+		}
+
 		function imageLoaded(){
-			if(typeof callback == 'function'){
-				callback();
+			if(typeof app.imageReload.callback == 'function'){
+				app.imageReload.callback();
 			}
 		}
 
@@ -71,12 +94,19 @@ app.partial.preload = function(){
 					imageReload(function(){
 						app.dementions.desktop = true;
 					});
+				} else{
+					app.imageReload.callback();
 				}
 				// if( $('html.ios').length && window.innerHeight ){
 				// 	$('html, body').height(window.innerHeight);
 				// }
 			}).trigger('resize');
-		}
+		},
+		refresh: function(){
+			$(window).trigger('resize');
+		},
+		callback: function(){}
 	};
 
 };	
+
