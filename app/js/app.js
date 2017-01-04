@@ -22,6 +22,7 @@ $(function(){
 	$.each(app.partial, function(name, init){
 		init();
     });
+    app.imageReload.init();
 
 
     app.imageReload.callback = function(){

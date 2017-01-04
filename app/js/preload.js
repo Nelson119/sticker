@@ -37,14 +37,28 @@ app.partial.preload = function(){
 							$('svg', svg).clone().insertAfter(ele);
 							$(ele).remove();
 						}else{
+<<<<<<< HEAD
 							$(ele).removeAttr('data-src').html($('svg', svg).clone());
 						}
 					});	
 					checkAll(src);
+=======
+							$(ele).html($('svg', svg).clone());
+						}
+					});	
+>>>>>>> 30f02d60a791edf736758f478b19606e2726a37e
 				});
 			}else{
 				var img = new Image();
 				img.onload = function(){
+<<<<<<< HEAD
+=======
+					imagePreload[src] = true;
+					var alldone = true;
+					$.each(imagePreload, function($s, $done){
+						alldone = $done && alldone;
+					});
+>>>>>>> 30f02d60a791edf736758f478b19606e2726a37e
 					var ret = $(elements).filter(function(){
 						return src == $(this).attr('data-src');
 					}).each(function(i, ele){
@@ -53,9 +67,18 @@ app.partial.preload = function(){
 						}else{
 							$(ele).css('background-image', 'url(' + $(ele).attr('data-src') + ')');
 						}
+<<<<<<< HEAD
 					});			
 					checkAll(src);	
 
+=======
+					});				
+
+					if(alldone){
+						//全部圖片下載完成
+						imageLoaded();
+					}
+>>>>>>> 30f02d60a791edf736758f478b19606e2726a37e
 				};
 				img.src = src;
 			}

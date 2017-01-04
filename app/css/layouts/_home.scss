@@ -1,2 +1,52 @@
 .home{
+<<<<<<< HEAD
+=======
+	img{
+		width: 200px;
+		stroke: #1F3C66;
+	}
+	figure{
+		width: 200px;
+		background: center/cover;
+	}
+
+	svg path{
+		stroke-dasharray: 6000px;
+		stroke-dashoffset: 9290px;
+		fill: none;
+		stroke-width: 2;
+		stroke: rgba(0,0,0,0.8);
+		@include animation(
+			ff 5s infinite linear forwards 0s
+		);
+	}
+
+
+}
+
+@include keyframes( ff )
+{
+	0% {
+		stroke-dashoffset: 9290px;
+		fill: rgba(0,0,0,0.05);
+	}
+	35% {
+		opacity: 1;
+		fill: rgba(0,0,0,0.03);
+	}
+	70% {
+		opacity: 0.85;
+		fill: rgba(0,0,0,0.5);
+		stroke-dashoffset: 12050px;
+	}
+	99% {
+		opacity: 1;
+		fill: rgba(0,0,0,0.03);
+		stroke-dashoffset: 9290px;
+	}
+	100%{
+		fill: rgba(0,0,0,0.05);
+		stroke-dashoffset: 9290px;
+	}
+>>>>>>> 30f02d60a791edf736758f478b19606e2726a37e
 }
