@@ -49,25 +49,28 @@ const testLintOptions = {
 };
 
 gulp.task('lint', lint('app/js/**/*.js'));
-gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
 gulp.task('html', ['css', 'js', 'about'], () => {
-  gulp.src('app/CNAME').pipe(gulp.dest('dist'));
+  // gulp.src('app/CNAME').pipe(gulp.dest('dist'));
   return gulp.src('app/*.html')
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
-    // .pipe($.if('*.js', $.uglify()))
-    // .pipe($.if('*.css', $.cssnano()))
-    // .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
+    .pipe($.if(/\.js$/, $.uglify()))
+    .pipe($.if(/\.css$/, $.cssnano()))
+    // .pipe($.if(/\.css$/, $.debug()))
+    .pipe($.if(/\.htmlo$/, $.htmlmin({collapseWhitespace: true})))
+    // .pipe($.debug())
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('about', () => {
-  return gulp.src('app/about/*.html')
-    .pipe($.useref({searchPath: ['app/about']}))
-    // .pipe($.if('*.js', $.uglify()))
-    // .pipe($.if('*.css', $.cssnano()))
-    // .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
-    .pipe(gulp.dest('dist/about'));
+  var gutil = $.util;
+  gulp.src('app/about/*.html')
+    .pipe($.useref({searchPath: ['app/about', '']}))
+    // .pipe($.debug())
+    // .pipe($.if(/\.css$/, $.debug()))
+    .pipe($.if(/\.js$/, $.uglify()))
+    .pipe($.if(/\.html$/, $.htmlmin({collapseWhitespace: true})))
+    .pipe(gulp.dest('dist/about')) ;
 });
 
 gulp.task('img', () => {
