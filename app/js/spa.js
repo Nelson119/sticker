@@ -91,8 +91,8 @@ app.partial.spa = function(){
 	});
 
 
-	if(app.getParam('path')){
-		var uri = decodeURIComponent(app.getParam('path'));
+	if(app.utility.getParam('path')){
+		var uri = decodeURIComponent(app.utility.getParam('path'));
 		$('a[data-href='+ uri +']').trigger('click');
 	}
 

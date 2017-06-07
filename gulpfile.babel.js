@@ -6,6 +6,7 @@ import del from 'del';
 import {stream as wiredep} from 'wiredep';
 
 const $ = gulpLoadPlugins();
+
 const reload = browserSync.reload;
 
 gulp.task('css', () => {
@@ -42,35 +43,30 @@ function lint(files, options) {
       .pipe($.if(!browserSync.active, $.eslint.failAfterError()));
   };
 }
-const testLintOptions = {
-  env: {
-    mocha: true
-  }
-};
 
 gulp.task('lint', lint('app/js/**/*.js'));
 
-gulp.task('html', ['css', 'js', 'about'], () => {
+gulp.task('html', ['css', 'js', 'components'], () => {
   // gulp.src('app/CNAME').pipe(gulp.dest('dist'));
   return gulp.src('app/*.html')
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
     .pipe($.if(/\.js$/, $.uglify()))
     .pipe($.if(/\.css$/, $.cssnano()))
     // .pipe($.if(/\.css$/, $.debug()))
-    .pipe($.if(/\.htmlo$/, $.htmlmin({collapseWhitespace: true})))
+    .pipe($.if(/\.html$/, $.htmlmin({collapseWhitespace: true})))
     // .pipe($.debug())
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('about', () => {
+gulp.task('components', () => {
   var gutil = $.util;
-  gulp.src('app/about/*.html')
-    .pipe($.useref({searchPath: ['app/about', '']}))
+  gulp.src('app/**/*.html')
+    .pipe($.useref({searchPath: ['', '.tmp', 'app/**']}))
     // .pipe($.debug())
-    // .pipe($.if(/\.css$/, $.debug()))
+    // .pipe($.if(/\.js$/, $.debug()))
     .pipe($.if(/\.js$/, $.uglify()))
     .pipe($.if(/\.html$/, $.htmlmin({collapseWhitespace: true})))
-    .pipe(gulp.dest('dist/about')) ;
+    .pipe(gulp.dest('dist/')) ;
 });
 
 gulp.task('img', () => {
@@ -140,25 +136,6 @@ gulp.task('serve:dist', () => {
       baseDir: ['dist']
     }
   });
-});
-
-gulp.task('serve:test', ['js'], () => {
-  browserSync({
-    notify: false,
-    port: 9000,
-    ui: false,
-    server: {
-      baseDir: 'test',
-      routes: {
-        '/js': '.tmp/js',
-        '/bower_components': 'bower_components'
-      }
-    }
-  });
-
-  gulp.watch('app/js/**/*.js', ['js']);
-  gulp.watch('test/spec/**/*.js').on('change', reload);
-  gulp.watch('test/spec/**/*.js', ['lint:test']);
 });
 
 // inject bower components
