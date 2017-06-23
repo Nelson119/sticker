@@ -27,7 +27,7 @@ app.partial.about = function(){
 
 					html2canvas($('#dog'), {
 						onrendered: function(canvas) {
-							$('.canvas').append(canvas);
+							$('.canvas').html(canvas);
 							var dataURL = canvas.toDataURL();
 							var capture = new Image();
 							capture.src = dataURL;
