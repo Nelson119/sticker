@@ -11,10 +11,10 @@ app.partial.about = function(){
 	var container = $('#container');
 	container.on('page:update:about' , function(page, menu){
 		$('#metadog').on('input', function(e){
-			console.log(this.value);
+			// console.log(this.value);
 			var url = this.value;
 			$.getJSON("http://localhost:8000/?url=" + encodeURIComponent(url), function(response){
-				console.log(response);
+				// console.log(response);
 				var sticker = 'https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/15864806/android/sticker.png;compress=true';
 				$('#dog figure.og').attr('data-src', 'http://localhost:8000/proxy?u=' + encodeURIComponent(response.data.ogImage.url));
 				$('#dog figure.sticker').attr('data-src', 'http://localhost:8000/proxy?u=' + encodeURIComponent(sticker));
@@ -36,7 +36,6 @@ app.partial.about = function(){
 					});
 					// }, 2500);
 				};
-				window.img = img;
 				img.src = 'http://localhost:8000/proxy?u=' + encodeURIComponent(response.data.ogImage.url);
 			});
 		});
