@@ -60,13 +60,15 @@ gulp.task('html', ['css', 'js', 'components'], () => {
 
 gulp.task('components', () => {
   var gutil = $.util;
-  gulp.src('app/**/*.html')
+  gulp.src(['app/**/*.html', '!app/index.html'])
     .pipe($.useref({searchPath: ['', '.tmp', 'app/**']}))
     // .pipe($.debug())
-    // .pipe($.if(/\.js$/, $.debug()))
+    .pipe($.if(/\.css$/, $.cssnano()))
+    .pipe($.if(/\.css$/, gulp.dest('./dist/components')))
     .pipe($.if(/\.js$/, $.uglify()))
+    .pipe($.if(/\.js$/, gulp.dest('./dist/components')))
     .pipe($.if(/\.html$/, $.htmlmin({collapseWhitespace: true})))
-    .pipe(gulp.dest('dist/')) ;
+    .pipe($.if(/\.html$/, gulp.dest('dist')))
 });
 
 gulp.task('img', () => {
@@ -103,7 +105,7 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['css', 'js', 'fonts'], () => {
+gulp.task('serve', ['css', 'js', 'fonts', 'nodemon'], () => {
   browserSync({
     notify: false,
     port: 9000,
@@ -128,6 +130,23 @@ gulp.task('serve', ['css', 'js', 'fonts'], () => {
   gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
 
+
+gulp.task('nodemon', function (cb) {
+  
+  var started = false;
+  
+  return $.nodemon({
+    script: 'app.js'
+  }).on('start', function () {
+    // to avoid nodemon being started multiple times
+    // thanks @matthisk
+    if (!started) {
+      cb();
+      started = true; 
+    } 
+  });
+});
+
 gulp.task('serve:dist', () => {
   browserSync({
     notify: false,
@@ -146,7 +165,7 @@ gulp.task('wiredep', () => {
     }))
     .pipe(gulp.dest('app/css'));
 
-  gulp.src('app/*.html')
+  gulp.src('app/**/*.html')
     .pipe(wiredep({
       exclude: ['bootstrap-sass'],
       ignorePath: /^(\.\.\/)*\.\./

@@ -1,0 +1,47 @@
+.about{
+	#dog{
+		display: block;
+		max-width: 530px;
+		position: relative;
+		padding: 0.5em;
+		border: 1px solid #4b4f56;
+		background: #fff;
+		figure.og{
+			height: 260px;
+			background-size: 100% auto;
+			background-position: center center;
+		}
+	
+		h3{
+			color: #1d2129;
+			font-size: 18px;
+		}
+		p{
+			color: #4b4f56;
+			font-size: 12px;
+		}
+		.canvas, .capture{
+			@include SubItem();
+			// border: 1px solid #4b4f56;
+			canvas{
+				border: 0;
+			}
+		}
+		.sticker{
+			width: 260px;
+			height: 224px;
+			background-size: 100% auto;
+			background-position: center center;
+			position: absolute;
+			bottom: 0;
+			right: 5%;
+			filter: drop-shadow(0 0 5px #000);
+			opacity: 0.8;
+		}
+		&:after{
+			content: '';
+			@include SubItem();
+			background: rgba(255,255,255,0.05);
+		}
+	}
+}

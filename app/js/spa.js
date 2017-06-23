@@ -74,7 +74,7 @@ app.partial.spa = function(){
 			location.href = rootPath;
 		}
 		document.title = info.title;
-		updateContent(info.content, info.category, info.catalog, function(){
+		updateContent(info.uri, info.name, info.menu, function(){
 		}, true);
 		return true;
 

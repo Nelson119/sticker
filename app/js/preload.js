@@ -24,6 +24,8 @@ app.partial.preload = function(){
 				elements.push(ele);
 			}
 		});
+
+		console.log(main);
 		
 		$.each(imagePreload, function(src, stat){
 			if(/\.svg$/.test(src)){
