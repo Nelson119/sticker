@@ -26,7 +26,6 @@ $(function(){
 			// console.log('preload callback');
     	$('html').addClass('loading-done');
     };
-    app.imageReload.init();
 
 
 });

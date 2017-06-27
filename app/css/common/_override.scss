@@ -1,50 +1,18 @@
-@font-face { 
-	font-family: 'msjh-arial'; 
-	src:  local("Lantinghei")
-		, local('Noto Sans TC')
-		, local('微軟正黑體')
-		, local("STHeiti")
-		, local("メイリオ")
-		, local("Meiryo")
-		, local("ヒラギノ角ゴ Pro w3")
-		, local("Hiragino Kaku Gothic Pro")
-		, local("Osaka")
-		, local("STXihei")
-		, local("HEITI TC")
-		, local("黑體-繁")
-		, local("黑體");
-}
-@font-face {
-	font-family: 'msjh-arial';
-	src: local('Arial')
-		, local("Segoe UI")
-		, local("Verdana")
-		, local("ＭＳ Ｐゴシック")
-		, local("MS P Gothic")
-		, local("Helvetica Neue")
-		, local("Helvetica")
-		, local("sans-serif");
-	font-weight: normal;
-	font-style: normal;
-	unicode-range: U+00-024F;
-}
-
-
 //** Background color for `<body>`.
-$body-bg:               #fff !default;
+$body-bg:               #000 !default;
 //** Global text color on `<body>`.
-$text-color:            #000;
+$text-color:            #fff;
 
 //** Global textual link color.
-$link-color:            #000;
+$link-color:            #fff;
 //** Link hover color set via `darken()` function.
-$link-hover-color:      #000;
+$link-hover-color:      #fff;
 //** Link hover decoration.
 $link-hover-decoration: none;
 
-$screen-xs-num:              769;
+$screen-xs-num:              800;
 $screen-xs:                  #{$screen-xs-num}px;
-$screen-sm-num:              769;
+$screen-sm-num:              800;
 $screen-sm:                  #{$screen-sm-num}px;
 $screen-md-num:              1024;
 $screen-md:                  #{$screen-md-num}px;

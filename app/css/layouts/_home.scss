@@ -1,2 +1,11 @@
 .home{
+	.kv{
+		@include Item(1920, 1080, 0, 'auto', 'auto', 0, 1920, 'fit', 'relative');
+		position: relative;
+		.visual{
+			@include SubItem();
+			background-position: center;
+			background-size: cover;
+		}
+	}
 }

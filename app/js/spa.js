@@ -40,8 +40,14 @@ app.partial.spa = function(){
 				if($(element).attr('property') === 'og:title'){
 					title = $(element).attr('content');
 				}
-				if($(element).attr('role') === 'main'){
-					htmlContent = element;
+				if($(element).attr('role') === 'container'){
+						// console.log($('[role=content]', element));
+					htmlContent = $('[role=content]', element);
+				}
+				if($(element).attr('role') === 'menu'){
+					$('.menu a', element).each(function(i){
+						$('[role=menu]').eq(i).attr('data-href', $(this).attr('data-href'));
+					});
 				}
 			});
 			if(!isPopstate){
@@ -50,12 +56,12 @@ app.partial.spa = function(){
 
 			container.html(htmlContent);
 
-
+			(callback || function(){})();
 
 			container.trigger('page:update:' + name, menu);
 			container.trigger('page:update', menu);
 
-			app.imageReload.init();
+			app.imageReload.refresh();
 		});
 	}
 
@@ -81,12 +87,13 @@ app.partial.spa = function(){
 	});
 
 	$('a[data-href]').on('click', function(e){
-		$(this).addClass('active').siblings().removeClass('active');
-		var uri = $(this).attr('data-href');
-		var name = $(this).text();
+		var $ele = $(this);
+		var uri = $ele.attr('data-href');
+		var name = $ele.attr('data-ref');
 		var menu = null;
 		updateContent(uri, name, menu, function(){
-			console.log(name);
+			// console.log(name);
+			$ele.addClass('active').siblings().removeClass('active');
 		});
 	});
 
