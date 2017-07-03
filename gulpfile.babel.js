@@ -48,11 +48,17 @@ gulp.task('lint', lint('app/js/**/*.js'));
 
 gulp.task('html', ['css', 'js', 'components'], () => {
   // gulp.src('app/CNAME').pipe(gulp.dest('dist'));
+  gulp.src('app/*.html')
+    .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
+    .pipe($.if(/vendor\.js$/, gulp.dest('dist')));
   return gulp.src('app/*.html')
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
+    .pipe($.ignore.exclude(/vendor\.js$/))
+    // .pipe($.ignore.exclude(/vendor\.css$/))
+    .pipe($.uniqueFiles())
     .pipe($.if(/\.js$/, $.uglify()))
     .pipe($.if(/\.css$/, $.cssnano()))
-    // .pipe($.if(/\.css$/, $.debug()))
+    // .pipe($.debug())
     .pipe($.if(/\.html$/, $.htmlmin({collapseWhitespace: true})))
     // .pipe($.debug())
     .pipe(gulp.dest('dist'));
@@ -63,10 +69,13 @@ gulp.task('components', () => {
   gulp.src(['app/**/*.html', '!app/index.html'])
     .pipe($.useref({searchPath: ['', '.tmp', 'app/**']}))
     // .pipe($.debug())
-    .pipe($.if(/\.css$/, $.cssnano()))
-    .pipe($.if(/\.css$/, gulp.dest('./dist/components')))
-    .pipe($.if(/\.js$/, $.uglify()))
-    .pipe($.if(/\.js$/, gulp.dest('./dist/components')))
+    // .pipe($.if(/\.css$/, $.cssnano()))
+    // .pipe($.if(/\.css$/, gulp.dest('./dist/components')))
+    // .pipe($.ignore.exclude(/vendor\.js$/))
+    // .pipe($.uniqueFiles())
+    // .pipe($.if(/components\.js$/, $.debug()))
+    // .pipe($.if(/\.js$/, $.uglify()))
+    // .pipe($.if(/components\.js$/, gulp.dest('./dist/components')))
     .pipe($.if(/\.html$/, $.htmlmin({collapseWhitespace: true})))
     .pipe($.if(/\.html$/, gulp.dest('dist')))
 });
@@ -105,7 +114,7 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['css', 'js', 'fonts', 'nodemon'], () => {
+gulp.task('serve', ['css', 'js', 'fonts'], () => {
   browserSync({
     notify: false,
     port: 9000,
@@ -118,7 +127,7 @@ gulp.task('serve', ['css', 'js', 'fonts', 'nodemon'], () => {
   });
 
   gulp.watch([
-    'app/*.html',
+    'app/**/*.html',
     '.tmp/js/**/*.js',
     'app/img/**/*',
     '.tmp/fonts/**/*'
@@ -131,21 +140,6 @@ gulp.task('serve', ['css', 'js', 'fonts', 'nodemon'], () => {
 });
 
 
-gulp.task('nodemon', function (cb) {
-  
-  var started = false;
-  
-  return $.nodemon({
-    script: 'app.js'
-  }).on('start', function () {
-    // to avoid nodemon being started multiple times
-    // thanks @matthisk
-    if (!started) {
-      cb();
-      started = true; 
-    } 
-  });
-});
 
 gulp.task('serve:dist', () => {
   browserSync({
@@ -179,4 +173,10 @@ gulp.task('build', ['lint', 'html', 'img', 'fonts', 'extras'], () => {
 
 gulp.task('default', ['clean'], () => {
   gulp.start('build');
+});
+
+gulp.task('tinypng', function () {
+    gulp.src(['app/img-origin/**/*.png','app/img-origin/**/*.jpg','!app/img-origin/ok/**/*.*'])
+        .pipe($.tinypng('13I8NM09OlZ1E0vNNq4c3Nq9oFTT8Y-v'))
+        .pipe(gulp.dest('app/img'));
 });

@@ -1,13 +1,12 @@
 {
-  "name": "html2",
+  "name": "frontend-template",
   "private": true,
   "dependencies": {
     "bootstrap-sass": "~3.3.5",
     "modernizr": "~2.8.1",
     "font-awesome": "fontawesome#^4.6.3",
     "detectizr": "^2.2.0",
-    "metadog": "^0.0.9",
-    "html2canvas": "^0.4.1"
+    "metadog": "^0.0.9"
   },
   "overrides": {
     "bootstrap-sass": {

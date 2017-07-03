@@ -5,9 +5,9 @@ env:
 node_js:
 - '0.12'
 install:
-- npm install gulp bower -g 
-- npm install
-- bower install
+- travis_retry npm i -g yarn 
+- travis_retry yarn global add gulp bower 
+- travis_retry yarn
 - gulp build
 - mkdir out
 - cp -r dist/* out
