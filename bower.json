@@ -1,36 +1,36 @@
 {
-  "name": "frontend-template",
-  "private": true,
-  "dependencies": {
-    "bootstrap-sass": "~3.3.5",
-    "modernizr": "~2.8.1",
-    "font-awesome": "fontawesome#^4.6.3",
-    "detectizr": "^2.2.0",
-    "metadog": "^0.0.9"
-  },
-  "overrides": {
-    "bootstrap-sass": {
-      "main": [
-        "assets/stylesheets/_bootstrap.scss",
-        "assets/fonts/bootstrap/*",
-        "assets/javascripts/bootstrap.js"
-      ]
+    "name": "frontend-template",
+    "private": true,
+    "dependencies": {
+        "modernizr": "~2.8.1",
+        "font-awesome": "fontawesome#^4.6.3",
+        "detectizr": "^2.2.0",
+        "bootstrap": "v4.0.0-alpha.6"
     },
-    "font-awesome": {
-      "main": [
-        "less/font-awesome.less",
-        "scss/font-awesome.scss",
-        "fonts/*"
-      ]
+    "overrides": {
+        "bootstrap": {
+            "main": [
+                "scss/bootstrap-reboot.scss",
+                "scss/bootstrap.scss",
+                "scss/bootstrap-grid.scss",
+                "dist/js/bootstrap.js"
+            ]
+        },
+        "font-awesome": {
+            "main": [
+                "less/font-awesome.less",
+                "scss/font-awesome.scss",
+                "fonts/*"
+            ]
+        },
+        "metadog": {
+            "main": [
+                "metadog.js"
+            ]
+        }
     },
-    "metadog": {
-      "main": [
-        "metadog.js"
-      ]
+    "devDependencies": {
+        "chai": "^3.5.0",
+        "mocha": "^3.0.2"
     }
-  },
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.0.2"
-  }
 }

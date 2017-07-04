@@ -1,57 +1,66 @@
 //** Background color for `<body>`.
-$body-bg:               #000 !default;
+$body-bg: #000 !default;
 //** Global text color on `<body>`.
-$text-color:            #fff;
-
+$text-color: #fff;
 //** Global textual link color.
-$link-color:            #fff;
+$link-color: #fff;
 //** Link hover color set via `darken()` function.
-$link-hover-color:      #fff;
+$link-hover-color: #fff;
 //** Link hover decoration.
 $link-hover-decoration: none;
-
-$screen-xs-num:              800;
-$screen-xs:                  #{$screen-xs-num}px;
-$screen-sm-num:              800;
-$screen-sm:                  #{$screen-sm-num}px;
-$screen-md-num:              1024;
-$screen-md:                  #{$screen-md-num}px;
-$screen-lg-num:              1920;
-$screen-lg:                  #{$screen-lg-num}px;
-
-
-$font-family-sans-serif:  'Noto Sans TC', 'microsoft jhenghei', '微軟正黑體', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
-$font-family-serif:       'Arial', 'Verdana', 'Lantinghei','Noto Sans TC', 'microsoft jhenghei', '微軟正黑體', 'Segoe UI';
+$screen-xs-num: 800;
+$screen-xs: #{$screen-xs-num}px;
+$screen-sm-num: 800;
+$screen-sm: #{$screen-sm-num}px;
+$screen-md-num: 1024;
+$screen-md: #{$screen-md-num}px;
+$screen-lg-num: 1920;
+$screen-lg: #{$screen-lg-num}px;
+$font-family-sans-serif: 'Noto Sans TC',
+'microsoft jhenghei',
+'微軟正黑體',
+'Helvetica Neue',
+Helvetica,
+Arial,
+sans-serif !default;
+$font-family-serif: 'Arial',
+'Verdana',
+'Lantinghei',
+'Noto Sans TC',
+'microsoft jhenghei',
+'微軟正黑體',
+'Segoe UI';
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
-$font-family-monospace:   Menlo, Monaco, Consolas, 'Courier New', monospace !default;
-$font-family-base:        $font-family-sans-serif !default;
-$font-size-base-num:      14;
-$font-size-base:          14px;
-$font-size-large:         18px; // ~18px
-$font-size-small:         12px;// ~12px
-$font-size-h1:            percentage(36/$font-size-base-num); // ~36px
-$font-size-h2:            percentage(30/$font-size-base-num); // ~30px
-$font-size-h3:            percentage(24/$font-size-base-num); // ~24px
-$font-size-h4:            percentage(18/$font-size-base-num); // ~18px
-$font-size-h5:            100%;
-$font-size-h6:            percentage(12/$font-size-base-num); // ~12px
-
-body{
-
-	::selection,::-moz-selection {
-		background:rgba(0,0,0,0.05);
-		color:inherit;
-	}
-	a:focus{
-		outline: none;
-	}
-
-	ul{
-		padding: 0;
-		margin: 0;
-
-		li{
-			list-style: none;
-		}
-	}
+$font-family-monospace: Menlo,
+Monaco,
+Consolas,
+'Courier New',
+monospace !default;
+$font-family-base: $font-family-sans-serif !default;
+$font-size-base-num: 14;
+$font-size-base: 1rem;
+$font-size-large: 18px; // ~18px
+$font-size-small: 12px; // ~12px
+$font-size-h1: percentage(36/$font-size-base-num); // ~36px
+$font-size-h2: percentage(30/$font-size-base-num); // ~30px
+$font-size-h3: percentage(24/$font-size-base-num); // ~24px
+$font-size-h4: percentage(18/$font-size-base-num); // ~18px
+$font-size-h5: 100%;
+$font-size-h6: percentage(12/$font-size-base-num); // ~12px
+body {
+     ::selection,
+     ::-moz-selection {
+        background: rgba(0, 0, 0, 0.05);
+        color: inherit;
+    }
+    a:focus {
+        outline: none;
+    }
+    ul {
+        padding: 0;
+        margin: 0;
+        li {
+            list-style: none;
+        }
+    }
 }
