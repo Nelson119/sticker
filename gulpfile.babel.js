@@ -53,13 +53,13 @@ gulp.task('html', ['css', 'js', 'components'], () => {
         .pipe($.if(/vendor\.js$/, gulp.dest('dist')));
     return gulp.src('app/*.html')
         .pipe($.useref({ searchPath: ['.tmp', 'app', '.'] }))
-        .pipe($.ignore.exclude(/vendor\.js$/))
+        // .pipe($.ignore.exclude(/vendor\.js$/))
         // .pipe($.ignore.exclude(/vendor\.css$/))
         .pipe($.uniqueFiles())
-        .pipe($.if(/\.js$/, $.uglify()))
-        .pipe($.if(/\.css$/, $.cssnano()))
+        // .pipe($.if(/\.js$/, $.uglify()))
+        // .pipe($.if(/\.css$/, $.cssnano()))
         .pipe($.debug())
-        .pipe($.if(/\.html$/, $.htmlmin({ collapseWhitespace: true })))
+        // .pipe($.if(/\.html$/, $.htmlmin({ collapseWhitespace: true })))
         // .pipe($.debug())
         .pipe(gulp.dest('dist'));
 });
@@ -76,7 +76,7 @@ gulp.task('components', () => {
         // .pipe($.if(/components\.js$/, $.debug()))
         // .pipe($.if(/\.js$/, $.uglify()))
         // .pipe($.if(/components\.js$/, gulp.dest('./dist/components')))
-        .pipe($.if(/\.html$/, $.htmlmin({ collapseWhitespace: true })))
+        // .pipe($.if(/\.html$/, $.htmlmin({ collapseWhitespace: true })))
         .pipe($.if(/\.html$/, gulp.dest('dist')))
 });
 
@@ -168,6 +168,11 @@ gulp.task('wiredep', () => {
 });
 
 gulp.task('build', ['lint', 'html', 'img', 'fonts', 'extras'], () => {
+    gulp.src('dist/**/*.html')
+        .pipe($.imageEmbed({
+            asset: 'app/img/**/*.png'
+        }))
+        .pipe(gulp.dest('dist'));
     return gulp.src('dist/**/*').pipe($.size({ title: 'build', gzip: true }));
 });
 

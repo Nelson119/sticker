@@ -1,15 +1,4 @@
 $icon-font-path: '../fonts/';
 @import "common/webfonts";
 @import "common/override";
-// bower:scss
-@import "vendor/font-awesome/scss/font-awesome.scss";
-@import "vendor/bootstrap/scss/bootstrap-reboot.scss";
-@import "vendor/bootstrap/scss/bootstrap.scss";
-@import "vendor/bootstrap/scss/bootstrap-grid.scss";
-// endbower
-@import "common/variables";
-@import "common/global";
-@import "layouts/header";
-@import "layouts/footer";
 @import "layouts/home";
-@import "layouts/form";

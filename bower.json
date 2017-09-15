@@ -1,36 +1,38 @@
 {
-    "name": "frontend-template",
-    "private": true,
-    "dependencies": {
-        "modernizr": "~2.8.1",
-        "font-awesome": "fontawesome#^4.6.3",
-        "detectizr": "^2.2.0",
-        "bootstrap": "v4.0.0-alpha.6"
+  "name": "frontend-template",
+  "private": true,
+  "dependencies": {
+    "modernizr": "~2.8.1",
+    "font-awesome": "fontawesome#^4.6.3",
+    "detectizr": "^2.2.0",
+    "jQuery-watermarker": "*",
+    "html2canvas": "^0.4.1",
+    "bootstrap-sass": "^3.3.7"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "scss/bootstrap-reboot.scss",
+        "scss/bootstrap.scss",
+        "scss/bootstrap-grid.scss",
+        "dist/js/bootstrap.js"
+      ]
     },
-    "overrides": {
-        "bootstrap": {
-            "main": [
-                "scss/bootstrap-reboot.scss",
-                "scss/bootstrap.scss",
-                "scss/bootstrap-grid.scss",
-                "dist/js/bootstrap.js"
-            ]
-        },
-        "font-awesome": {
-            "main": [
-                "less/font-awesome.less",
-                "scss/font-awesome.scss",
-                "fonts/*"
-            ]
-        },
-        "metadog": {
-            "main": [
-                "metadog.js"
-            ]
-        }
+    "font-awesome": {
+      "main": [
+        "less/font-awesome.less",
+        "scss/font-awesome.scss",
+        "fonts/*"
+      ]
     },
-    "devDependencies": {
-        "chai": "^3.5.0",
-        "mocha": "^3.0.2"
+    "metadog": {
+      "main": [
+        "metadog.js"
+      ]
     }
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  }
 }

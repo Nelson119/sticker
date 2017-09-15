@@ -5,17 +5,18 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>adidas HERE TO CREATE 由我創造</title>
+    <title></title>
 
-    <meta property="og:title" content="adidas HERE TO CREATE 由我創造" />
+    <meta property="og:title" content="" />
     <meta property="og:description" content="" />
     <meta property="og:url" content="" />
-    <link rel="apple-touch-icon" href="favi.png">
-    <link rel="icon" type="image/x-icon" href="favi.png" />
+    <link rel="apple-touch-icon" href="">
+    <link rel="icon" type="image/x-icon" href="" />
     <!-- Place favicon.ico in the root directory -->
 
     <!-- build:css css/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="/vendor/jQuery-watermarker/watermarker.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -30,61 +31,129 @@
 </head>
 
 <body>
-    <!--[if lt IE 10]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+    <div class="sticker-container">
+        <img src="img/preview.jpg" style="position:absolute">
 
-    <header role="menu">
 
-        <!--選單-->
-        <nav class="menu visible-zh fontsize-15">
-            <a class="active" href="javascript:" data-ref="home" data-href="/">球星故事</a>
-            <a href="javascript:" data-ref="form" data-href="form">Sports Base 訓練</a>
-            <a href="javascript:" data-ref="rule" data-href="rule">活動辦法</a>
-        </nav>
-        <!--./選單-->
-    </header>
-    <section id="container" role="container">
 
-        <section id="content" class="home" role="content">
-        </section>
-    </section>
-    <footer>
-        <p>ALL RIGHTS RESERVED &copy;</p>
-    </footer>
+        <figure class="title"><img src="img/preview.jpg" style="position:absolute"></figure>
+        <input id="sticker1" val="1" checked="checked" class="invisible" type="radio" name="sticker">
+        <input id="sticker2" val="2" class="invisible" type="radio" name="sticker">
+        <input id="sticker3" val="3" class="invisible" type="radio" name="sticker">
+        <input id="sticker4" val="4" class="invisible" type="radio" name="sticker">
+        <input id="sticker5" val="5" class="invisible" type="radio" name="sticker">
+        <input id="sticker6" val="6" class="invisible" type="radio" name="sticker">
+        <input id="sticker7" val="7" class="invisible" type="radio" name="sticker">
+        <input id="sticker8" val="8" class="invisible" type="radio" name="sticker">
+        <input id="sticker9" val="0" class="invisible" type="radio" name="sticker">
+        <figure class="phone">
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-        // (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-        // function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-        // e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-        // e.src='https://www.google-analytics.com/analytics.js';
-        // r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-        // ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
+            <figure class="gif-content"><img src="img/sample1.gif"></figure>
+
+            <figure class="frame top"><img src="img/phone-top.png"></figure>
+            <figure class="frame butt"><img src="img/phone-butt.png"></figure>
+            <figure class="frame left"><img src="img/phone-left.png"></figure>
+            <figure class="frame right"><img src="img/phone-right.png"></figure>
+            <aside class="sticker-range">
+                <figure class="sticker sticker1"><img src="img/st1.png"></figure>
+                <figure class="sticker sticker2"><img src="img/st2.png"></figure>
+                <figure class="sticker sticker3"><img src="img/st3.png"></figure>
+                <figure class="sticker sticker4"><img src="img/st4.png"></figure>
+                <figure class="sticker sticker5"><img src="img/st5.png"></figure>
+                <figure class="sticker sticker6"><img src="img/st6.png"></figure>
+                <figure class="sticker sticker7"><img src="img/st7.png"></figure>
+                <figure class="sticker sticker8"><img src="img/st8.png"></figure>
+            </aside>
+            <figure class="tagline"><img src="img/st9.png"></figure>
+            <figure class="capture"></figure>
+        </figure>
+        <ol>
+            <li><label class="vertical-middle option1" for="sticker1"><img class="sticker" src="img/st1.png"></label></li>
+            <li><label class="vertical-middle option2" for="sticker2"><img class="sticker" src="img/st2.png"></label></li>
+            <li><label class="vertical-middle option4" for="sticker4"><img class="sticker" src="img/st4.png"></label></li>
+            <li><label class="vertical-middle option5" for="sticker5"><img class="sticker" src="img/st5.png"></label></li>
+            <li><label class="vertical-middle option6" for="sticker6"><img class="sticker" src="img/st6.png"></label></li>
+            <li><label class="vertical-middle option7" for="sticker7"><img class="sticker" src="img/st7.png"></label></li>
+            <li><label class="vertical-middle option3" for="sticker3"><img class="sticker" src="img/st3.png"></label></li>
+            <li><label class="vertical-middle option8" for="sticker8"><img class="sticker" src="img/st8.png"></label></li>
+            <li><label class="vertical-middle option9" for="sticker9"><img class="sticker" src="img/st9.png"></label></li>
+        </ol>
+        <a class="prev" href="javascript:">
+            <span>上一步</span>
+        </a>
+        <a class="next" href="javascript:">
+            <span>下一步</span>
+        </a>
+    </div>
+
+
 
     <!-- build:js js/vendor.js -->
     <!-- bower:js -->
     <script src="/vendor/jquery/dist/jquery.js"></script>
-    <script src="/vendor/tether/dist/js/tether.js"></script>
-    <script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/vendor/jQuery-watermarker/watermarker.js"></script>
+    <script src="/vendor/html2canvas/build/html2canvas.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js js/main.js -->
-    <script src="js/app.js"></script>
-    <script src="js/utility.js"></script>
-    <script src="js/preload.js"></script>
-    <script src="js/spa.js"></script>
-    <script src="js/i18n.js"></script>
-    <script src="js/ga.js"></script>
+    <!-- build:js js/plugins.js -->
     <!-- endbuild -->
 
-    <!-- build:js js/components.js -->
-    <script src="js/components/home.js"></script>
-    <script src="js/components/form.js"></script>
-    <!-- endbuild -->
+    <script type="text/javascript">
+        $('figure.sticker').each(function(i, d){
+            var src = $('img', this).attr('src');
+            var img = new Image();
+            img.onload = function(){
+                $(d).watermarker({
+                    onChange: function(){},
+                    onInitialize: function(){},
+                    imagePath: src,
+                    containerClass: "watermarker-wrapper " + $(d).attr('class'),
+                    watermarkerClass: "watermarker-container",
+                    watermarkImageClass: "watermarker-image",
+                    resizerClass: "resizer",
+                    draggingClass: "dragging",
+                    resizingClass: "resizing",
+                    offsetLeft: '30%',
+                    offsetTop: '70%',
+                    aspectRatio: img.width / img.height,
+                });
+                $(d).remove();
+            };
+            img.src = src;
+        });
+        var info = {
+          sticker: {
+            serial: null,
+            top: null,
+            left: null,
+            width: null
+          },
+          capture: {
+              url: null
+          }
+        };
+        $('.next').on('click', function(e){
+            
+            //貼圖編號
+            info.sticker.serial = $('[name="sticker"]:checked').attr('id').replace(/sticker/, '') * 1;
+            var sticker = $('.watermarker-wrapper.sticker' + info.sticker.serial + ' .watermarker-container');
+            console.log(sticker)
+            info.sticker.left = sticker.offset().left;
+            info.sticker.top = sticker.offset().top;
+            info.sticker.width = sticker.width();
 
+            html2canvas($('.phone'), {
+                onrendered: function(canvas) {
+                    // canvas is the final rendered <canvas> element
+                    var img = new Image();
+                    img .src = canvas.toDataURL('image/png');
+                    $('.capture').html(img);
+                }
+            });
+            console.log(info);
+        });
+    </script>
 </body>
 
 </html>

@@ -1,11 +1,208 @@
-.home{
-	.kv{
-		@include Item(1920, 1080, 0, 'auto', 'auto', 0, 1920, 'fit', 'relative');
-		position: relative;
-		.visual{
-			@include SubItem();
-			background-position: center;
-			background-size: cover;
-		}
-	}
+
+// bower:scss
+@import "vendor/font-awesome/scss/font-awesome.scss";
+@import "vendor/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+@import "common/variables";
+@import "common/global";
+.sticker-container{
+    background: #fff;
+    
+    width: 1200px;
+    position: relative;
+    margin: -1px auto 0;
+    padding-top: 1px;
+    padding-bottom: 5px;
+    .phone{
+        @include Item(362, 782, 57, 0, 0, 67, 1200,'fit','relative');
+        background: #000;
+        overflow: hidden;
+        .frame{
+            position: absolute;
+            top: 0;
+            left: 0;
+            &.left{
+                margin-top: per(39, 362);
+            }
+            &.butt{
+                top: auto;
+                bottom: 0;
+            }
+            &.right{
+                margin-top: per(39, 362);
+                left: auto;
+                right: 0;
+            }
+        }
+        .gif-content{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            margin-bottom: per(38, 362);
+            img{
+                max-width: 100%;
+            }
+        }
+        .sticker-range{
+            @include Item(341, 705, 39, 0, 0, 10, 362,'fit','absolute');
+
+        }
+        .tagline{
+            @include Item(243, 37, 708, 0, 0, 95, 362,'fit','absolute');
+            img{
+                @include SubImgW();
+            }
+        }
+        .capture{
+            @include SubImgW();
+        }
+    }
+    label{
+        .sticker{
+            display: inline-block;
+            position: relative;
+            width: 100%;
+        }
+    
+    }
+    .watermarker-wrapper{
+        background: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%!important;
+        height: 100%!important;
+    }
+    .watermarker-wrapper .watermarker-container{
+        background: none;
+        border: 1px solid transparent;
+        border-top: none;
+        border-left: none;
+        top: 50%;
+        left: 30%;
+        &:hover{
+            // border: 1px dashed #999;
+            border-top: none;
+            border-left: none;
+        }
+    }
+    .watermarker-remove-item{
+        display: none;
+    }
+    .watermarker-wrapper .watermarker-container .watermarker-image{
+    
+        height: auto;
+        bottom: 0;
+        position: absolute;
+    }
+    .resizer{
+        filter: drop-shadow(0 0 5px #fff);
+    }
+    #sticker1:checked ~ .phone .sticker1{
+        display: block;
+    }
+    #sticker2:checked ~ .phone .sticker2{
+        display: block;
+    }
+    #sticker3:checked ~ .phone .sticker3{
+        display: block;
+    }
+    #sticker4:checked ~ .phone .sticker4{
+        display: block;
+    }
+    #sticker5:checked ~ .phone .sticker5{
+        display: block;
+    }
+    #sticker6:checked ~ .phone .sticker6{
+        display: block;
+    }
+    #sticker7:checked ~ .phone .sticker7{
+        display: block;
+    }
+    #sticker8:checked ~ .phone .sticker8{
+        display: block;
+    }
+    #sticker9:checked ~ .phone .sticker9{
+        display: block;
+    }
+    
+    #sticker1:checked ~ ol .option1,
+    #sticker2:checked ~ ol .option2,
+    #sticker3:checked ~ ol .option3,
+    #sticker4:checked ~ ol .option4,
+    #sticker5:checked ~ ol .option5,
+    #sticker6:checked ~ ol .option6,
+    #sticker7:checked ~ ol .option7,
+    #sticker8:checked ~ ol .option8,
+    #sticker9:checked ~ ol .option9{
+        &:after{
+            opacity: 1;
+        }
+    }
+    .sticker{
+        display: none;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+    ol{
+        margin-top: per(140, 1200);
+        margin-left: per(486, 1200);
+        width: per(500, 1200);
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+    }
+    ol li{
+        background: #b5b5b5;
+        box-shadow: inset 0 0 1px #000;
+        float: left;
+        width: per(160, 500);
+        padding-top: per(160, 500); 
+        margin-bottom: per(50, 500); 
+        position: relative;
+        list-style: none;
+        label{
+            @include SubItem();
+            text-align: center;
+            img.sticker{
+                max-width: 100%;
+                height: auto;
+            }
+            &:before,&:after{
+                content: '';
+                @include Item(26, 27, 172, 0, 0, 67, 160,'fit','absolute');
+                background:url(../img/checkbg.png) no-repeat center/cover;
+
+            }
+            &:after{
+                background-image:url(../img/checkedbg.png);
+                opacity: 0;
+            }
+        }
+        &:nth-child(3n),&:nth-child(3n+2){
+            margin-left: per(10, 500);
+        }
+    }
+    .invisible{
+        display: none;
+    }
+
+    .next,.prev{
+        display: block;
+        @include Item(260, 200, 790, 0, 0, 480, 1200,'fit','absolute');
+        padding: 0.9em;
+        font-size: 1.5em;
+        background: #fff;
+        border-radius: 1em;
+        border: 3px solid #000;
+        span{
+            @include SubItem();
+            text-align: center;
+        }
+    }
+    .next{
+        margin-left: per(760,1200);
+    }
 }
